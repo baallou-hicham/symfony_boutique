@@ -18,6 +18,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 128)]
+    private ?string $username = null;
+
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -32,12 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
-
-    #[ORM\Column(length: 128)]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 128)]
-    private ?string $lastName = null;
 
     public function getId(): ?int
     {
@@ -120,26 +117,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // @deprecated, to be removed when upgrading to Symfony 8
     }
 
-    public function getFirstName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->firstName;
+        return $this->username;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setUsername(string $username): static
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
+        $this->username = $username;
 
         return $this;
     }

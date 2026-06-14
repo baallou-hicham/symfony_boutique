@@ -12,11 +12,16 @@
     <h1>Page d'accueil</h1>
 
     {% if app.user %}
-        <h3>Bonjour {{ app.user.firstName }}! </h3>
+        <h3>Bonjour {{ app.user.username }}! </h3>
         <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {% else %}
         <a href="{{ path('app_login') }}">Se connecter</a>
     {% endif %}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <h3><a href="/super-admin/dashboard">Dashboard Super Admin</a></h3>
+    {% endif %}
+    
     
 </div>
 {% endblock %}
